@@ -2,7 +2,7 @@ import * as React from "react"
 import Svg, { Defs, Mask, Rect, Path, G, Circle } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: style */
 
-function SvgComponent(props) {
+function SvgComponent(props: any) {
   return (
     <Svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" {...props}>
       <Defs>
