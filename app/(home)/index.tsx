@@ -1,6 +1,5 @@
-import { View, FlatList, StyleSheet, Text, StatusBar, Image } from 'react-native';
-import ButtonHomeScreen from '../../src/components/button-home-screen';
 import { router } from 'expo-router';
+import { FlatList, StatusBar, StyleSheet, View } from 'react-native';
 import {
   SvgAtualizarLocalizacao,
   SvgCadastroDeEquipamento,
@@ -19,7 +18,9 @@ import {
   SvgSolicitacoesEquipamentos,
   SvgSolicitarEquipamento
 } from '../../assets/svg/index';
-import PRIMARY_COLOR from '../../src/config/theme';
+import ButtonHomeScreen from '../../src/components/buttons/button-home-screen';
+import {PRIMARY_COLOR} from '../../src/theme/colors'
+
 
 const botoes = [
   { key: 1, textButton: "Solicitar Equipamento", SvgElement: SvgSolicitarEquipamento, route: "/solicitar-equipamento" },

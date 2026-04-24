@@ -1,20 +1,19 @@
-import { View, StyleSheet, Text, StatusBar } from 'react-native';
-import { Slot } from 'expo-router';
-import { router, useLocalSearchParams } from 'expo-router';
-import PRIMARY_COLOR from '../../src/config/theme';
+import { Slot, useLocalSearchParams } from 'expo-router';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { PRIMARY_COLOR } from '@/src/theme/colors';
 
 
 
 
- function Layout() {
+export default function Layout() {
 
     const { title } = useLocalSearchParams();
     const MainHeader = () => (
         <View style={styles.containerTitleBar}>
-            <Text style={styles.titleBar}>{title || 'App'}</Text>
+            <Text style={styles.titleBar}>{title.toUpperCase() || 'App'}</Text>
         </View>
     )
-    
+
     return (
         <View style={{ flex: 1 }}>
             <MainHeader />
@@ -25,19 +24,20 @@ import PRIMARY_COLOR from '../../src/config/theme';
 
 const styles = StyleSheet.create({
     containerTitleBar: {
-        paddingTop: StatusBar.currentHeight || 0,
-        height: 110,
+        marginTop: StatusBar.currentHeight || 0,
+        height: 60,
         backgroundColor: PRIMARY_COLOR,
         elevation: 1,
-        borderBottomRightRadius: 15,
-        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 13,
+        borderBottomLeftRadius: 13,
+        justifyContent: 'center'
 
     },
     titleBar: {
         color: '#fff',
         fontSize: 18,
         fontWeight: 'bold',
+        textAlign: 'center',
+        alignSelf: 'center'
     }
 });
-
-export default Layout;

@@ -1,8 +1,8 @@
-import { View, StyleSheet, Text, StatusBar, Image } from 'react-native';
 import { Slot } from 'expo-router';
-import ButtonTitleBar from '../../src/components/button-title-bar';
+import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { SvgRefresh, SvgSair } from '../../assets/svg/index';
-import PRIMARY_COLOR from '../../src/config/theme';
+import ButtonTitleBar from '../../src/components/buttons/button-title-bar';
+import {PRIMARY_COLOR} from '../../src/theme/colors';
 
 const HeaderHomeScreen = () => (
   <View style={styles.headerContainer}>
@@ -13,7 +13,7 @@ const HeaderHomeScreen = () => (
       />
     </View>
 
-    <View style={styles.containerNomeUsuario}>
+    <View>
       <Text style={{ color: '#fff', fontSize: 18 }}>
         Manoel Ribeiro
       </Text>
