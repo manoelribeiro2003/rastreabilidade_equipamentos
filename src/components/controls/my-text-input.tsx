@@ -1,16 +1,17 @@
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View, KeyboardTypeOptions   } from 'react-native'
 import {PRIMARY_COLOR} from '@/src/theme/colors'
 
 export const MyTextInput = ({
     placeholder = "Digite...",
-    defaultValue = ''
+    defaultValue = '' as string | number,
+    keyboardType = 'default' as KeyboardTypeOptions
 }) => (
     <View style={[styles.containerView]}>
         <TextInput
             placeholder={placeholder}
             style={styles.text}
             defaultValue={defaultValue.toString()}
-            keyboardType='numeric'
+            keyboardType= {keyboardType}
         />
     </View>
 )

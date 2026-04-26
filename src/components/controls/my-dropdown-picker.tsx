@@ -4,8 +4,9 @@ import {PRIMARY_COLOR} from '../../theme/colors'
 import { adjustHexColor } from '../../theme/colors-utils'
 
 export const MyDropdownPicker = ({
-    placeholder = "Selecione...",
-    onPress = ()=>(console.log(placeholder))
+    placeholder = "Selecione..." as string,
+    onPress = ()=>(console.log(placeholder)),
+    maxWidth= 40 as number
 }) => (
     <View style={[styles.containerView]}>
         <Pressable
@@ -20,7 +21,7 @@ export const MyDropdownPicker = ({
             ]}
         >
             <Text style={[styles.placeholder,]}>{placeholder}</Text>
-            <View style={styles.containerSeta}>
+            <View style={[styles.containerSeta, {maxWidth: maxWidth}]}>
                 <SvgSetaBaixo/>
             </View>
         </Pressable>
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         alignItems: 'center',
-        maxWidth: 40
     },
     placeholder:{
         paddingLeft: 8,
