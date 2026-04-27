@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, KeyboardTypeOptions, Pressable } from 'react-native'
+import { StyleSheet, TextInput, View, KeyboardTypeOptions, Pressable, DimensionValue } from 'react-native'
 import { PRIMARY_COLOR } from '@/src/theme/colors'
 import { SvgBarCodeScanner } from '@/assets/svg'
 import { adjustHexColor } from '../../theme/colors-utils'
@@ -8,12 +8,13 @@ export const MyTextInputButton = ({
     defaultValue = '' as string | number,
     keyboardType = 'default' as KeyboardTypeOptions,
     onPress = () => (console.log(placeholder)),
-    width = 40 as number
+    buttonWidth = 60 as DimensionValue,
+    height = 35 as DimensionValue
 }) => (
-    <View style={styles.container}>
+    <View style={styles.containerView}>
         <TextInput
             placeholder={placeholder}
-            style={styles.placeholder}
+            style={styles.textInput}
             defaultValue={defaultValue.toString()}
             keyboardType={keyboardType}
         />
@@ -24,18 +25,16 @@ export const MyTextInputButton = ({
                 {
                     opacity: pressed ? 0.9 : 1,
                     backgroundColor: pressed ? adjustHexColor(PRIMARY_COLOR, 0.8) : '#fff',
-                    width: width,
+                    width: buttonWidth,
+                    height: height
                 },
             ]}
         >
             {({ pressed }) => (
-                <View
-                    style={[
-                        styles.containerSVG,
-                        { transform: [{ scale: pressed ? 0.95 : 1 }] }
-                    ]}
-                >
-                    <SvgBarCodeScanner />
+                <View style={styles.containerSVG}>
+                    <SvgBarCodeScanner
+                        style={{ transform: [{ scale: pressed ? 0.95 : 1 }] }}
+                    />
                 </View>
             )}
         </Pressable>
@@ -43,31 +42,33 @@ export const MyTextInputButton = ({
 )
 
 const styles = StyleSheet.create({
-    container: {
+    containerView: {
         borderWidth: 1,
         borderColor: PRIMARY_COLOR,
         borderRadius: 14,
         overflow: 'hidden',
+        flexDirection: 'row',
+        width: '100%'
     },
-    placeholder: {
+    textInput: {
+        flex: 1,
         paddingLeft: 8,
         textAlignVertical: 'center',
         fontSize: 16,
         fontWeight: '500',
         padding: 0,
-        height: 35
+        height: '100%'
     },
     pressable: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'stretch',
-        height: 35,
     },
     containerSVG: {
-        backgroundColor: PRIMARY_COLOR,
-        borderWidth: 0,
-        justifyContent: 'center',
         flex: 1,
+        backgroundColor: PRIMARY_COLOR,
+        justifyContent: 'center',
         alignItems: 'center',
+        
     },
 })
