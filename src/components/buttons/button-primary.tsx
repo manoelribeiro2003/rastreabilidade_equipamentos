@@ -1,34 +1,41 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, PressableProps } from 'react-native';
 
-export const ButtonPrimary = ({
-    textButton = "Pressione aqui",
-    onPress = () => console.log(textButton),
+
+type ButtonPrimaryProps = {
+    textButton?: string;
+    backgroundColor?: string;
+    fontColor?: string;
+  } & PressableProps;
+  
+  export const ButtonPrimary = ({
+    textButton = 'Pressione aqui',
     backgroundColor = '#28A745',
-    fontColor = '#FFF'
-}) => (
-
+    fontColor = '#FFF',
+    onPress = () => alert(textButton), // ✅ onPress padrão
+    style,
+    ...props
+  }: ButtonPrimaryProps) => (
     <Pressable
-        onPress={onPress}
-        style={({ pressed }) => [
-            styles.pressable,
-            {
-                transform: [{ scale: pressed ? 0.98 : 1 }],
-                opacity: pressed ? 0.85 : 1,
-                backgroundColor: backgroundColor
-            },
-        ]}
+      onPress={onPress}
+      {...props}
+      style={(state) => [
+        styles.pressable,
+        {
+          transform: [{ scale: state.pressed ? 0.98 : 1 }],
+          opacity: state.pressed ? 0.85 : 1,
+          backgroundColor: backgroundColor,
+        },
+        typeof style === 'function' ? style(state) : style,
+      ]}
     >
-        <Text style={[
-            styles.textButton,
-            {
-                color: fontColor
-            }
-        ]}
-        >
-            {textButton}
-        </Text>
+      <Text style={[styles.textButton, { color: fontColor }]}>
+        {textButton}
+      </Text>
     </Pressable>
-);
+  );
+  
+
+
 
 const styles = StyleSheet.create({
     pressable: {

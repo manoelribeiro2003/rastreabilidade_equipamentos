@@ -29,7 +29,7 @@ const botoes = [
   { key: 4, textButton: "Atualizar Localização", SvgElement: SvgAtualizarLocalizacao, route: "/(main)/atualizar-localizacao" },
   { key: 5, textButton: "Rastrear Equipamento", SvgElement: SvgRastrearEquipamento, route: "/(main)/rastrear-equipamento" },
   { key: 6, textButton: "Solicitações de Equipamentos", SvgElement: SvgSolicitacoesEquipamentos, route: "/(main)/solicitacoes-equipamentos" },
-  { key: 7, textButton: "Solicitações de Setup", SvgElement: SvgSolicitacoesDeSetup, route: "/(main)/solicitacoes-setup" },
+  { key: 7, textButton: "Solicitações de Setup", SvgElement: SvgSolicitacoesDeSetup, route: "/(main)/(solicitacoes-setup)/solicitacao-recolhimento" },
   { key: 8, textButton: "Equipamentos em Estoque", SvgElement: SvgEquipamentosEmEstoque, route: "/(main)/equipamentos-estoque" },
   { key: 9, textButton: "Envios e Recebimentos", SvgElement: SvgEnviosERecebimentos, route: "/(main)/envios-recebimentos" },
   { key: 10, textButton: "Encerrar Chamado", SvgElement: SvgEncerrarChamado, route: "/(main)/encerrar-chamado" },

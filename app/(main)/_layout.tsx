@@ -1,5 +1,5 @@
 import { Slot, useLocalSearchParams, router } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { PRIMARY_COLOR } from '@/src/theme/colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { SvgSetaVoltar } from '@/assets/svg';
@@ -40,9 +40,9 @@ export default function Layout() {
         </View>
     );
     const ContainerScreen = ({ children }: { children: React.ReactElement }) => (
-        <View style={styles.containerScreen}>
+        <ScrollView contentContainerStyle={styles.containerScreen}>
             {children}
-        </View>
+        </ScrollView>
     );
 
     return (
@@ -51,18 +51,16 @@ export default function Layout() {
             <ContainerScreen>
                 <Slot />
             </ContainerScreen>
-
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     containerScreen: {
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'flex-start',
+        flexGrow: 1,
         padding: 20,
-        alignItems: 'center'
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     containerTitleBar: {
         backgroundColor: PRIMARY_COLOR,

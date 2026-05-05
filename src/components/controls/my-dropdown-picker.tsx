@@ -1,36 +1,54 @@
-import { Pressable, StyleSheet, Text, View, DimensionValue } from 'react-native'
+import { Pressable, StyleSheet, Text, View, DimensionValue, PressableProps } from 'react-native'
 import { SvgSetaBaixo } from '../../../assets/svg/index'
 import { PRIMARY_COLOR } from '../../theme/colors'
 import { adjustHexColor } from '../../theme/colors-utils'
 
-export const MyDropdownPicker = ({
-    placeholder = "Selecione..." as string,
-    onPress = () => (console.log(placeholder)),
-    maxWidth = 40 as DimensionValue,
-    height = 35 as DimensionValue
-}) => {
+
+type MyDropdownPickerProps = {
+    placeholder?: string;
+    maxWidth?: DimensionValue;
+    height?: DimensionValue;
+  } & Omit<PressableProps, 'children'>;
+  
+  export const MyDropdownPicker = ({
+    placeholder = 'Selecione...',
+    maxWidth = 40,
+    height = 35,
+    onPress = () => console.log(placeholder), // ✅ onPress padrão
+    style,
+    ...pressableProps
+  }: MyDropdownPickerProps) => {
     return (
-        <View style={[styles.containerView]}>
-            <Pressable
-                onPress={onPress}
-                style={({ pressed }) => [
-                    styles.pressable,
-                    {
-                        /*transform: [{ scale: pressed ? 0.95 : 1 }],*/
-                        opacity: pressed ? 0.9 : 1,
-                        backgroundColor: pressed ? adjustHexColor(PRIMARY_COLOR, 0.8) : '#fff',
-                        height: height
-                    },
-                ]}
-            >
-                <Text style={[styles.placeholder,]}>{placeholder}</Text>
-                <View style={[styles.containerSeta, { maxWidth: maxWidth }]}>
-                    <SvgSetaBaixo />
-                </View>
-            </Pressable>
-        </View>
-    )
-}
+      <View style={styles.containerView}>
+        <Pressable
+          onPress={onPress}
+          {...pressableProps}
+          style={(state) => [
+            styles.pressable,
+            {
+              opacity: state.pressed ? 0.9 : 1,
+              backgroundColor: state.pressed
+                ? adjustHexColor(PRIMARY_COLOR, 0.8)
+                : '#fff',
+              height,
+            },
+            typeof style === 'function'
+              ? style(state)
+              : style,
+          ]}
+        >
+          <Text style={styles.placeholder}>{placeholder}</Text>
+  
+          <View style={[styles.containerSeta, { maxWidth }]}>
+            <SvgSetaBaixo />
+          </View>
+        </Pressable>
+      </View>
+    );
+  };
+  
+
+
 
 const styles = StyleSheet.create({
     containerView: {

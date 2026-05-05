@@ -1,10 +1,11 @@
 import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 import { MyTextInputButton } from '@/src/components/controls/my-text-input-button'
 import { MyDropdownPicker } from '@/src/components/controls/my-dropdown-picker'
 import { CardComponent } from '@/src/components/iu/card-component'
-import { Text, View, StyleSheet } from 'react-native';
 import { PRIMARY_COLOR } from '@/src/theme/colors'
 import { MyTextInput } from '@/src/components/controls/my-text-input';
+import { ButtonPrimary } from '@/src/components/buttons/button-primary';
 
 export default function AtualizarLocalizacao() {
 
@@ -24,39 +25,66 @@ export default function AtualizarLocalizacao() {
           <Text style={styles.textLabel}>Família</Text>
           <MyTextInput
             editable={false}
+            placeholder=''
           />
         </View>
         <View style={styles.containerControle}>
           <Text style={styles.textLabel}>Fábrica</Text>
           <MyTextInput
             editable={false}
+            placeholder=''
           />
         </View>
         <View style={styles.containerControle}>
           <Text style={styles.textLabel}>Localização Atual</Text>
           <MyTextInput
             editable={false}
+            placeholder=''
           />
         </View>
       </CardComponent>
 
       <View style={styles.containerGroup}>
 
-        <View style={styles.containerSubGroupExt}>
-          <View style={styles.containerSubGroupIn}>
-            <View style={styles.containerControle}>
-              <Text style={styles.textLabel}>Filial</Text>
-              <MyDropdownPicker />
-            </View>
-            <View style={styles.containerControle}>
-              <Text style={styles.textLabel}>*Fábrica</Text>
-              <MyDropdownPicker />
-            </View>
+        <View style={styles.containerSubGroup}>
+          <View style={[styles.containerControle, { flex: 1 }]}>
+            <Text style={styles.textLabel}>Filial</Text>
+            <MyDropdownPicker />
           </View>
+          <View style={[styles.containerControle, { flex: 1 }]}>
+            <Text style={styles.textLabel}>*Fábrica</Text>
+            <MyDropdownPicker />
+          </View>
+        </View>
+        <View style={styles.containerSubGroup}>
+          <View style={[styles.containerControle, { flex: 1 }]}>
+            <Text style={styles.textLabel}>*Setor</Text>
+            <MyDropdownPicker />
+          </View>
+          <View style={[styles.containerControle, { flex: 1 }]}>
+            <Text style={styles.textLabel}>Local</Text>
+            <MyDropdownPicker />
+          </View>
+        </View>
 
+        <View style={styles.containerControle}>
+          <Text style={styles.textLabel}>Motivo da Movimentação</Text>
+          <MyDropdownPicker />
+        </View>
+        <View style={[styles.containerControle, { marginBottom: 0 }]}>
+          <Text style={styles.textLabel}>Motivo do Concerto</Text>
+          <MyTextInput
+            editable={false}
+            placeholder='Digite o motivo do concerto'
+          />
         </View>
 
       </View>
+
+      <ButtonPrimary
+        textButton='Atualizar'
+        onPress={() => (alert('Equipamento atualizado com sucesso'))}
+      />
 
     </>
   );
@@ -66,9 +94,6 @@ const styles = StyleSheet.create({
   containerControle: {
     marginBottom: 15,
   },
-  containerControleIn:{
-    flex: 1,
-  },
   textLabel: {
     color: PRIMARY_COLOR,
     fontSize: 16,
@@ -77,20 +102,14 @@ const styles = StyleSheet.create({
   containerGroup: {
     width: '100%',
     padding: 10,
-    marginTop: 20,
+    marginVertical: 20,
     borderWidth: 1,
     borderColor: PRIMARY_COLOR,
     borderRadius: 16
   },
-  containerSubGroupExt: {
-    flexDirection: 'column',
-    borderWidth: 1,
-    borderColor: 'red'
-  },
-  containerSubGroupIn: {
+  containerSubGroup: {
     flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: 'blue'
+    gap: 10
   }
 
 });

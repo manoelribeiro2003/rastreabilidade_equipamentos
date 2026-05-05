@@ -1,45 +1,67 @@
-import { StyleSheet, TextInput, View, KeyboardTypeOptions, Pressable, DimensionValue } from 'react-native'
+import { StyleSheet, TextInput, View, KeyboardTypeOptions, Pressable, DimensionValue, PressableProps } from 'react-native'
 import { PRIMARY_COLOR } from '@/src/theme/colors'
 import { SvgBarCodeScanner } from '@/assets/svg'
 import { adjustHexColor } from '../../theme/colors-utils'
 
+
+
+type MyTextInputButtonProps = {
+    placeholder?: string;
+    defaultValue?: string | number;
+    keyboardType?: KeyboardTypeOptions;
+    buttonWidth?: DimensionValue;
+    height?: DimensionValue;
+} & Omit<PressableProps, 'children'>;
+
 export const MyTextInputButton = ({
-    placeholder = "Digite...",
-    defaultValue = '' as string | number,
-    keyboardType = 'default' as KeyboardTypeOptions,
-    onPress = () => (console.log(placeholder)),
-    buttonWidth = 60 as DimensionValue,
-    height = 35 as DimensionValue
-}) => (
+    placeholder = 'Digite...',
+    defaultValue = '',
+    keyboardType = 'default',
+    buttonWidth = 60,
+    height = 35,
+    onPress = () => console.log(placeholder), // ✅ onPress padrão
+    ...pressableProps
+}: MyTextInputButtonProps) => (
     <View style={styles.containerView}>
         <TextInput
             placeholder={placeholder}
             style={styles.textInput}
-            defaultValue={defaultValue.toString()}
+            defaultValue={String(defaultValue)}
             keyboardType={keyboardType}
         />
+
         <Pressable
             onPress={onPress}
-            style={({ pressed }) => [
+            {...pressableProps}
+            style={(state) => [
                 styles.pressable,
                 {
-                    opacity: pressed ? 0.9 : 1,
-                    backgroundColor: pressed ? adjustHexColor(PRIMARY_COLOR, 0.8) : '#fff',
+                    opacity: state.pressed ? 0.9 : 1,
+                    backgroundColor: state.pressed
+                        ? adjustHexColor(PRIMARY_COLOR, 0.8)
+                        : '#fff',
                     width: buttonWidth,
-                    height: height
+                    height,
                 },
+                typeof pressableProps.style === 'function'
+                    ? pressableProps.style(state)
+                    : pressableProps.style,
             ]}
         >
-            {({ pressed }) => (
+            {(state) => (
                 <View style={styles.containerSVG}>
                     <SvgBarCodeScanner
-                        style={{ transform: [{ scale: pressed ? 0.95 : 1 }] }}
+                        style={{
+                            transform: [{ scale: state.pressed ? 0.95 : 1 }],
+                        }}
                     />
                 </View>
             )}
         </Pressable>
     </View>
-)
+);
+
+
 
 const styles = StyleSheet.create({
     containerView: {
@@ -69,6 +91,6 @@ const styles = StyleSheet.create({
         backgroundColor: PRIMARY_COLOR,
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
 })
