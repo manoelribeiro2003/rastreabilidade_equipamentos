@@ -6,13 +6,13 @@ import { adjustHexColor } from '../../theme/colors-utils'
 
 type MyDropdownPickerProps = {
     placeholder?: string;
-    maxWidth?: DimensionValue;
+    minWidth?: DimensionValue;
     height?: DimensionValue;
   } & Omit<PressableProps, 'children'>;
   
   export const MyDropdownPicker = ({
     placeholder = 'Selecione...',
-    maxWidth = 40,
+    minWidth = 40,
     height = 35,
     onPress = () => console.log(placeholder),
     style,
@@ -39,7 +39,7 @@ type MyDropdownPickerProps = {
         >
           <Text style={styles.placeholder}>{placeholder}</Text>
   
-          <View style={[styles.containerSeta, { maxWidth }]}>
+          <View style={[styles.containerSeta, { minWidth }]}>
             <SvgSetaBaixo />
           </View>
         </Pressable>
@@ -68,14 +68,12 @@ const styles = StyleSheet.create({
     containerSeta: {
         backgroundColor: PRIMARY_COLOR,
         justifyContent: 'center',
-        flex: 1,
         alignItems: 'center',
-        alignSelf: 'flex-end'
     },
     placeholder: {
         paddingLeft: 8,
         textAlignVertical: 'center',
         fontSize: 16,
-        fontWeight: '500'
+        fontWeight: '500',
     }
 })
