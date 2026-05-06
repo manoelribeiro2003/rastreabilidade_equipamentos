@@ -51,8 +51,6 @@ const ButtonHomeScreen = ({
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        // borderWidth: 1,
-        // borderColor: 'black',
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
@@ -68,8 +66,6 @@ const styles = StyleSheet.create({
         color: '#000',
         textAlign: 'center',
         flex: 1,
-        // borderWidth: 1,
-        // borderColor: 'black',
         textAlignVertical: 'center',
     },
     pressable: {

@@ -11,7 +11,7 @@ type ButtonPrimaryProps = {
     textButton = 'Pressione aqui',
     backgroundColor = '#28A745',
     fontColor = '#FFF',
-    onPress = () => alert(textButton), // ✅ onPress padrão
+    onPress = () => alert(textButton),
     style,
     ...props
   }: ButtonPrimaryProps) => (

@@ -26,18 +26,23 @@ const EncerrarChamado = () => (
                     color: 'rgba(0, 0, 0, 0.1)',
                     inset: false,
                 },
-            ]
+            ],
+            padding: 0,
+            paddingHorizontal: 20,
+            paddingBottom: 20
         }}>
             <View style={styles.viewCardHeader}>
-                <Text style={{ color: PRIMARY_COLOR }}>BEM: <Text style={{ color: '#000' }}>389525</Text></Text>
-                <MaterialCommunityIcons
-                        style={styles.dragIcon}
+                <Text style={{ color: PRIMARY_COLOR, marginTop: 20 }}>BEM: <Text style={{ color: '#000' }}>389525</Text></Text>
+                <View style={[styles.timeContainer, { marginTop: 10 }]}>
+                    <MaterialCommunityIcons
                         name='clock-time-four-outline'
                         color='#000'
                         size={24}
                     />
-                <Text>1h:48m</Text>
-                <Text>10/03/26 11:46</Text>
+                    <Text>1h:48m</Text>
+
+                </View>
+                <Text style={{ marginTop: 20 }}>10/03/26 11:46</Text>
             </View>
 
         </CardComponent>
@@ -52,13 +57,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%'
-
+},
+    timeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
     },
-    dragIcon: {
-        marginTop: 0,
-        // alignSelf: 'center',
-        borderWidth: 1
-    }
 })
 
 export default EncerrarChamado

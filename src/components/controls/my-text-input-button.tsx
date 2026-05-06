@@ -19,7 +19,7 @@ export const MyTextInputButton = ({
     keyboardType = 'default',
     buttonWidth = 60,
     height = 35,
-    onPress = () => console.log(placeholder), // ✅ onPress padrão
+    onPress = () => console.log(placeholder),
     ...pressableProps
 }: MyTextInputButtonProps) => (
     <View style={styles.containerView}>

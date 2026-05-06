@@ -14,7 +14,7 @@ type MyDropdownPickerProps = {
     placeholder = 'Selecione...',
     maxWidth = 40,
     height = 35,
-    onPress = () => console.log(placeholder), // ✅ onPress padrão
+    onPress = () => console.log(placeholder),
     style,
     ...pressableProps
   }: MyDropdownPickerProps) => {
