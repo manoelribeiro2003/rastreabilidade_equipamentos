@@ -18,7 +18,7 @@ function SvgPlaceHolder(props: any) {
     )
 }
 
-function lightenHex(hex: string, percent: number) {
+function adjustHexColor(hex: string, percent: number) {
     const num = parseInt(hex.replace('#', ''), 16);
 
     let r = (num >> 16) & 0xff;
@@ -51,7 +51,7 @@ const ButtonTitleBar = ({
         { 
             borderRadius: buttonSize * 0.25, 
             width: buttonSize * 0.7, 
-            backgroundColor: lightenHex(defaultBackgroudColor, defaultlightenHex)
+            backgroundColor: adjustHexColor(defaultBackgroudColor, defaultlightenHex)
         }
     ]}>
         <Pressable
